@@ -11,6 +11,7 @@ import hashlib
 import base64
 import requests
 import schedule
+import config
 
 # TO DO LIST
 # Protect vars
@@ -40,9 +41,9 @@ stdout,stderr = p.communicate()
 products_query = json.loads(stdout)
 
 # Find a way to put protect these
-API_SECRET  = "api secret here"
-API_KEY = "api key here"
-API_PASSPHRASE  = "api passphrase here"
+API_SECRET  = config.MY_SECRET_API_KEY
+API_KEY = config.MY_API_KEY
+API_PASSPHRASE  = config.MY_API_PASSPHRASE
 
 # signature generation function:
 def timestamp_and_signature(
@@ -146,13 +147,12 @@ def portfolioValue(accounts):
 # To do: When Coinbase Pro is working, add a time module so it sends texts every x amnt of time
 
 def sendMSG():
-    # Find a way to protect these vars
-    account_sid = "sid here"
-    auth_token  = "auth token here"
+    account_sid = config.MY_ACCOUNT_SID
+    auth_token  = config.MY_AUTH_TOKEN
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-    to="Phone number here", 
-    from_="Phone number here",
+    to = config.myNumber, 
+    from_= config.twilioNumber,
     body=portfolioValue(accounts))
 
 schedule.every(30).minutes.do(sendMSG)
@@ -168,3 +168,5 @@ dt = datetime.now().strftime("%M")
         sendMSG()
         print("Sent at " + datetime.now().strftime("%M"))
         time.sleep(1800) """
+
+sendMSG()
