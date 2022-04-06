@@ -14,20 +14,18 @@ def portfolioInfo(accounts):
     output = datetime.now().strftime("%m/%d/%Y at %I:%M %p\n")
     total = 0
     for account in accounts:
+        currency = account['currency'] + "USDT"
+        url = "https://api.binance.com/api/v3/ticker/price?symbol={currency}".format(currency = currency)
+        data = requests.get(url)
+        data = data.json()
+        # KeyError Exception Handling
         try:
-            currency = account['currency'] + "USDT"
-            url = "https://api.binance.com/api/v3/ticker/price?symbol={currency}".format(currency = currency)
-            data = requests.get(url)
-            data = data.json()
             usd_price = round(float(data['price'] )* float(account['balance']), 2)
-            total += usd_price
-            usd_price = "${:,.2f}".format(usd_price)
-            output += account['currency'] + " - " + usd_price +"\n"
         except KeyError:
             usd_price = float(account['balance'])
-            total += usd_price
-            usd_price = "${:,.2f}".format(usd_price)
-            output += account['currency'] + " - " + usd_price
+        total += usd_price
+        usd_price = "${:,.2f}".format(usd_price)
+        output += account['currency'] + " - " + usd_price +"\n"
     output += "\nTotal: " + "${:,.2f}".format(total)
     return output
 
@@ -62,4 +60,5 @@ for acc in allAccounts:
     if float(acc.get('balance')) > 0:
         accounts.append(acc)
 
-sendMSG()
+#sendMSG()
+print(portfolioInfo(accounts))
