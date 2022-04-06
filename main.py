@@ -33,8 +33,6 @@ def portfolioInfo(accounts):
 # Sends a SMS messsage 
 # Twilio phone numbers are formatted as following, +11234567890
 def sendMSG():
-    account_sid = account_sid
-    auth_token  = auth_token
     client = Client(account_sid, auth_token)
     message = client.messages.create(
     to = myNumber, 
@@ -60,5 +58,5 @@ for acc in allAccounts:
     if float(acc.get('balance')) > 0:
         accounts.append(acc)
 
-#sendMSG()
-print(portfolioInfo(accounts))
+sendMSG()
+#print(portfolioInfo(accounts))
