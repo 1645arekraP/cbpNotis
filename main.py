@@ -1,6 +1,5 @@
 import cbpro
 import json
-import config
 from twilio.rest import Client
 from config import *
 from datetime import date, datetime
@@ -39,6 +38,19 @@ def sendMSG():
     from_= twilioNumber,
     body=portfolioInfo(accounts))
 
+# Text Timer
+# Fix var names start_time and stop_time are used to silence notifications
+# Add infinite loop somewhere and add minutes instead of hours
+# Use flask to finish
+def timedText(frequency_in_minutes, start_time=0, stop_time=23):
+    current_time = int(datetime.now().strftime("%H"))
+    while (start_time < current_time < stop_time):
+        current_time = int(datetime.now().strftime("%H"))
+        print(current_time)
+        time.sleep(30)
+
+timedText(1, 14)
+
 # Crypto
 # Get accounts
 url="https://api.exchange.coinbase.com"
@@ -58,5 +70,4 @@ for acc in allAccounts:
     if float(acc.get('balance')) > 0:
         accounts.append(acc)
 
-sendMSG()
-#print(portfolioInfo(accounts))
+#sendMSG()
