@@ -15,6 +15,7 @@ Because Coinbase Pro does not offer notifications, and I forget to check my acco
 - Fixed price formatting
  
 # To Do list
+- Clean up requirements.txt
 - Add twilio conversations that expand a currencies info
 - Fix the spaghetti code
 - Include Open Orders
