@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT flaskapp:app
+port = int(os.environ.get('PORT', 5000))
