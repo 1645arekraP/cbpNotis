@@ -19,7 +19,7 @@ def portfolioInfo(accounts):
         data = data.json()
         # KeyError Exception Handling
         try:
-            usd_price = round(float(data['price'] )* float(account['balance']), 2)
+            usd_price = float(data['price'] )* float(account['balance'])
         except KeyError:
             usd_price = float(account['balance'])
         total += usd_price
