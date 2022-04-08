@@ -1,7 +1,7 @@
 import cbpro
 import json
 from twilio.rest import Client
-from app.config import *
+from config import *
 from datetime import date, datetime
 import time
 import requests
@@ -49,8 +49,6 @@ def timedText(frequency_in_minutes, start_time=0, stop_time=23):
         print(current_time)
         time.sleep(30)
 
-timedText(1, 14)
-
 # Crypto
 # Get accounts
 url="https://api.exchange.coinbase.com"
@@ -70,4 +68,5 @@ for acc in allAccounts:
     if float(acc.get('balance')) > 0:
         accounts.append(acc)
 
-#sendMSG()
+sendMSG()
+print("Done")
