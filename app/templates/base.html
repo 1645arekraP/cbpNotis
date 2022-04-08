@@ -2,7 +2,10 @@
 <head>
     <title>{% block title %}cbpNotis{% endblock %}</title>
     </head>
+
     <body>
+        {% block content %}
+        {% endblock %}
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="#">Fixed navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +29,6 @@
               </form>
             </div>
           </nav>
-          {% block content %}
-          {% endblock %}
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
