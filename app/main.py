@@ -1,7 +1,7 @@
 import cbpro
 import json
 from twilio.rest import Client
-from app.config import *
+from config import *
 from datetime import date, datetime
 import time
 import requests
