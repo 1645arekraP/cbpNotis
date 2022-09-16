@@ -69,4 +69,3 @@ for acc in allAccounts:
         accounts.append(acc)
 
 sendMSG()
-print("Done")
